@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import logging
 
 
+
 def initialize_directories(base_path, directories, directory_to_skip):
     """
     Crea le directory di output se non esistono e le svuota.
