@@ -7,6 +7,9 @@ __pycache__/
 .Python
 MANIFEST
 
+.idea
+.idea/*
+
 # Environments
 .env
 .venv
@@ -15,3 +18,17 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+dataset/BCN20000/images
+dataset/BCN20000/nei_benigni
+dataset/BCN20000/images/*.jpg
+dataset/BCN20000/nei_benigni/*.jpg
+dataset/BCN20000/nei_maligni/*.jpg
+dataset/BCN20000/nei_indeterminati/*.jpg
+
+dataset/HAM10000/images
+dataset/HAM10000/nei_benigni
+dataset/HAM10000/images/*.jpg
+dataset/HAM10000/nei_benigni/*.jpg
+dataset/HAM10000/nei_maligni/*.jpg
+dataset/HAM10000/nei_indeterminati/*.jpg
