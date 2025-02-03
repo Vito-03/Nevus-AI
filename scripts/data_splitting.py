@@ -283,10 +283,10 @@ def create_charts(directories, datasets):
 def main():
 
     # percorso base
-    my_path = os.path.join(os.getcwd(), "dataset\\")
+    my_path = os.path.join(os.getcwd(), "dataset")
 
     # dataset
-    datasets = ["BCN20000", "HAM10000"]
+    datasets = ["BCN20000"]
 
     # sottocartelle
     subfolders = [
