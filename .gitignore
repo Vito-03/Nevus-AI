@@ -34,3 +34,5 @@ dataset/HAM10000/nei_maligni/*.jpg
 dataset/HAM10000/nei_indeterminati/*.jpg
 
 dataset/BCN20000/dataset1/
+
+*.h5
