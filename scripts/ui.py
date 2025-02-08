@@ -6,8 +6,8 @@ import os
 
 # streamlit run ui.py
 
-# Caricamento del modello pre-addestrato
-MODEL = ""
+# Caricamento del modello pre-addestrato, ATTENZIONE a specificare il path
+MODEL = "neo_binary_classifier.h5"
 MODEL_PATH = os.path.join(os.getcwd(), MODEL)
 print(MODEL_PATH)
 model = tf.keras.models.load_model(MODEL_PATH)
@@ -36,11 +36,28 @@ def predict_image(image):
 
 
 # Interfaccia Streamlit
-st.set_page_config(page_title="Classificatore di Melanomi", page_icon="🩺")
+st.set_page_config(page_title="Classificatore di Nei", page_icon="🩺")
 
-st.title("🩺 Classificatore di Melanomi (Benigno o Maligno)")
+st.markdown(
+    """
+    <style>
+    /* Importa il font Montserrat */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+    /* Applica Montserrat a tutto il testo */
+    html, body, [class*="st-"] {
+        font-family: 'Montserrat', sans-serif;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+st.title("🩺 Classificatore di nei")
 st.write(
-    "Carica un'immagine di un neo per ottenere una previsione basata sul modello addestrato."
+    """Sfrutta il potere dell'IA per una diagnosi immediata.
+    Carica l'immagine di un neo per ottenere una previsione basata sul modello addestrato."""
 )
 
 # Caricamento dell'immagine
@@ -50,13 +67,13 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="🖼️ Immagine caricata", use_column_width=True)
+    st.image(image, caption="🖼️ Immagine caricata", use_container_width=True)
 
     if st.button("Classifica"):
         with st.spinner("🔍 Analisi in corso..."):
             label, confidence, probabilities = predict_image(image)
 
-        # ✅ Esito Finale
+        # Esito Finale
         st.markdown(f"## 📝 **Esito dell'Analisi:**")
         if label == "Benigno":
             st.success(
@@ -67,7 +84,7 @@ if uploaded_file is not None:
                 f"⚠️ Il neo analizzato è **{label.upper()}** con una precisione del **{confidence:.2f}%**."
             )
 
-        # 📊 Probabilità dettagliate per entrambe le classi
+        # Probabilità dettagliate per entrambe le classi
         st.markdown("### 📊 **Probabilità per ciascuna classe:**")
         st.write(f"- **Benigno:** {probabilities['Benigno']:.2f}%")
         st.write(f"- **Maligno:** {probabilities['Maligno']:.2f}%")
@@ -76,7 +93,7 @@ if uploaded_file is not None:
         st.markdown("### 🚦 **Confidenza del Modello:**")
         st.progress(int(confidence))
 
-        # 📝 Consigli finali
+        # Consigli finali
         st.markdown(
             """
         ---
