@@ -36,7 +36,7 @@ datagen = ImageDataGenerator(
 )
 
 # Generatori di Dati
-data_dir = "/content/BCN20000"
+data_dir = "../dataset/BCN20000"
 folders_to_move = ["nei_benigni", "nei_maligni"]
 
 train_generator = datagen.flow_from_directory(
@@ -69,7 +69,7 @@ base_model.trainable = False  # Freezing dei pesi pre-addestrati
 x = Flatten()(base_model.output)
 x = Dense(512, activation="relu")(x)
 x = Dropout(0.5)(x)
-output = Dense(1, activation="sigmoid")(x)  # ⚠️ Sigmoid per output binario
+output = Dense(1, activation="sigmoid")(x)  # Sigmoid per output binario
 
 # Costruzione del modello finale
 model = Model(inputs=base_model.input, outputs=output)
@@ -133,7 +133,7 @@ history = model.fit(
 )
 
 # Salvataggio del modello
-output_dir = "./output"  # 📂 Directory di output
+output_dir = "./output"  # Directory di output
 os.makedirs(output_dir, exist_ok=True)
 
 model_path = os.path.join(output_dir, "neo_binary_classifier.h5")
